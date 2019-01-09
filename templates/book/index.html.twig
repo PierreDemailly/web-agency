@@ -3,39 +3,32 @@
 {% block title %}Book index{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
+<div class="container">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Date</th>
-                <th>Resume</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1 class="primary-h1">Livres enregistrés</h1>
+
+    <a class="add-button" href="{{ path('book_new') }}">Ajouter un livre</a>
+
+    <div class="row">
+
         {% for book in books %}
-            <tr>
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.date ? book.date|date('Y-m-d') : '' }}</td>
-                <td>{{ book.resume }}</td>
-                <td>
-                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
-                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('book_new') }}">Create new</a>
+        <a class="col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2" href="{{ path('book_show', {'id': book.id}) }}">
+                <div class="box">
+                <div class="box-img">
+                    <img src="{{ asset("uploads/Cover/#{book.image.src}") }}" alt="{{ book.image.text }}">
+                </div>
+                <div class="box-body">
+                    <div class="box-content">{{ book.title }}</div>
+                </div>
+                </div>
+        </a>
+        {% else %}
+                <div class="alert alert-info">no records found</div>
+        {% endfor %}
+      
+    </div>
+
+</div>
+
 {% endblock %}
