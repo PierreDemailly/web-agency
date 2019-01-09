@@ -49,10 +49,9 @@ class ClientController extends AbstractController
     /**
      * @Route("/{id}", name="client_show", methods={"GET"})
      */
-    public function show(Client $client, ClientRepository $clientRepository): Response
+    public function show(Client $client): Response
     {
-        $books = $clientRepository->getBookTitlesFromUser($client->getId());
-        return $this->render('client/show.html.twig', ['client' => $client, 'books' => $books]);
+        return $this->render('client/show.html.twig', ['client' => $client]);
     }
 
     /**
@@ -68,10 +67,10 @@ class ClientController extends AbstractController
 
             return $this->redirectToRoute('client_index', ['id' => $client->getId()]);
         }
-        
+
         return $this->render('client/edit.html.twig', [
-            'form' => $form->createView(),
             'client' => $client,
+            'form' => $form->createView(),
         ]);
     }
 

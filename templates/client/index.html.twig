@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
+                <th>Token</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ client.id }}</td>
                 <td>{{ client.firstname }}</td>
                 <td>{{ client.lastname }}</td>
+                <td>{{ client.token }}</td>
                 <td>
                     <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
                     <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
