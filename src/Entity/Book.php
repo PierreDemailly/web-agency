@@ -43,7 +43,7 @@ class Book
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"}, fetch="EAGER")
      */
     private $image;
 
