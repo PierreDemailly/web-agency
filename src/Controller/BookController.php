@@ -143,11 +143,6 @@ class BookController extends AbstractController
                 $book->setClient($client);
             }
 
-            if($request->request->get('restit') === 'restit')
-            {
-                $book->setClient(null);
-            }
-
             $this->getDoctrine()->getManager()->persist($image);
             $this->getDoctrine()->getManager()->persist($book);
             $this->getDoctrine()->getManager()->flush();
@@ -177,7 +172,19 @@ class BookController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
 
-        /**
+    /**
+     * @Route("/{id}/return", name="book_return", methods={"POST"})
+     */
+    public function return(Request $request, Book $book): Response 
+    {
+        $book->setClient(null);
+        $this->getDoctrine()->getManager()->persist($book);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('book_show', array('id' => $book->getId()));
+    }
+
+    /**
      * @return string
      */
     private function generateUniqueFileName()

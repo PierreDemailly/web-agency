@@ -11,9 +11,10 @@
             </select>
         {% endif %}
     {% else %}
-        <!-- FIXME: -->
-        <input type="checkbox" value="restit" name="restit">
+        <button form="return_form">Restituer</button>
     {% endif %}
 
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+<form id="return_form" method="post" action="{{ path('book_return', { 'id': book.id }) }}"></form>
