@@ -5,7 +5,7 @@
 {% block body %}
 <div class="d-flex mvh-100">
     
-    <form name="registration_form" class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3 m-auto primary-form" method="post">
+    <form name="registration_form" class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3 m-auto form form-primary" method="post">
      
         <div class="form-heading">
             Créer mon compte
@@ -26,16 +26,16 @@
         <div class="form-body">
 
             <div class="form-group">
-                <label class="primary-label" for="registration_form_email">Email</label>
-                <input class="primary-input" id="registration_form_email" name="registration_form[email]" required maxlength="255">
+                <label class="label" for="registration_form_email">Email</label>
+                <input class="input" id="registration_form_email" name="registration_form[email]" placeholder="Email" required maxlength="255">
             </div>
 
             <div class="form-group">
-                <label class="primary-label" for="registration_form_plainPassword">Mot de passe</label>
-                <input type="password" class="primary-input" id="registration_form_plainPassword" name="registration_form[plainPassword]" required>
+                <label class="label" for="registration_form_plainPassword">Mot de passe</label>
+                <input type="password" class="input" id="registration_form_plainPassword" name="registration_form[plainPassword]" required>
             </div>
 
-            <button class="primary-button mt-2">Inscription</button>
+            <button class="button button-secondary mt-2">Inscription</button>
 
             <a class="d-block mt-1" href="{{ path('app_login') }}">J'ai déjà un compte</a>
 
