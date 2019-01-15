@@ -3,38 +3,85 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
-    <h1>Client</h1>
+<div id="content">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ client.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ client.lastname }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid p-0">
 
-    {% if books %}
-    <h2>Livres empruntés:</h2>
-    <ul>
-        {% for book in books %}
-            <li><a href="{{ path('book_show', {'id': book.id}) }}">{{ book.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-justify"></i>
+            </button>
 
-    <a href="{{ path('client_index') }}">back to list</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                <div class="breadcrumb my-2">
+            <a href="{{ path('client_index') }}">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Clients</span>
+                    <span class="breadcrumb__desc">Accueil</span>
+                </span>
+            </a>
+            <a class="active" href="{{ path('client_show', {'id': client.id }) }}">
+                <span class="breadcrumb__inner">
+                    <span class="breadcrumb__title">Clients</span>
+                    <span class="breadcrumb__desc">{{ client.firstname | upper }} {{ client.lastname | upper }}</span>
+                </span>
+            </a>
+	    </div>
+            </div>
+        </div>
+    </nav>
+
+   <div class="container">
+        
+        
+
+        <h1 class="c-info">{{ client.firstname | upper }} {{ client.lastname | upper }}</h1>
+
+                <div class="book-detail col-12 col-sm-10 col-lg-8 col-xl-6">
+
+        <table class="book-table">
+            <tbody>
+                <tr>
+                    <th>#
+                    <td>{{ client.id }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom
+                    <td>{{ client.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Nom
+                    <td>{{ client.lastname }}</td>
+                </tr>
+
+                <tr>
+                    <th class="py-3 clickable-row" data-href="{{ path('client_edit', { 'id': client.id }) }}"><button class="button button-secondary">Modifier</button></th>
+                </tr>
+                
+            </tbody>
+
+        </table>
+        <div class="user-undertable">
+            <div class="title">Livres empruntés</div>
+            <ul>
+             {% for book in books %}
+                        <li><a href="{{ path('book_show', {'id': book.id}) }}">{{ book.title }}</a>
+                    {% else %}
+                        <li>Ce client n'a aucun emprunt en cours.</li>
+            {% endfor %}
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+</div>
 
     {{ include('client/_delete_form.html.twig') }}
 {% endblock %}

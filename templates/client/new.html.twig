@@ -3,9 +3,41 @@
 {% block title %}New Client{% endblock %}
 
 {% block body %}
-    <h1>Create new Client</h1>
+<div id="content">
 
-    {{ include('client/_form.html.twig') }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid p-0">
 
-    <a href="{{ path('client_index') }}">back to list</a>
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-justify"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <div class="breadcrumb">
+        <a href="{{ path('client_index') }}">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Clients</span>
+                <span class="breadcrumb__desc">Accueil</span>
+            </span>
+        </a>
+        <a class="active" href="{{ path('client_new') }}">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Clients</span>
+                <span class="breadcrumb__desc">Ajouter un client</span>
+            </span>
+        </a>
+
+    </div>
+            </div>
+        </div>
+    </nav>
+
+    {{ include('client/_form.html.twig', {'button_label': 'Créer un client', 'form_title': 'Ajouter un client'}) }}
+
 {% endblock %}

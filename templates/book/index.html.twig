@@ -3,25 +3,56 @@
 {% block title %}Book index{% endblock %}
 
 {% block body %}
+
+<div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid p-0">
+
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <div class="breadcrumb my-1">
+        <a class="active" href="{{ path('book_index') }}">
+            <span class="breadcrumb__inner">
+                <span class="breadcrumb__title">Livres</span>
+                <span class="breadcrumb__desc">Accueil</span>
+            </span>
+        </a>
+    </div>
+                </div>
+            </div>
+        </nav>
+
 <div class="container">
 
-    <h1 class="primary-h1">Livres enregistrés</h1>
+    <h1 class="c-info">Livres enregistrés</h1>
 
-    <a class="add-button" href="{{ path('book_new') }}">Ajouter un livre</a>
+    <a class="button button-secondary" href="{{ path('book_new') }}">Ajouter un livre</a>
 
-    <div class="row">
+    <div class="row m-3">
 
         {% for book in books %}
 
-        <a class="col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2" href="{{ path('book_show', {'id': book.id}) }}">
-                <div class="box">
-                <div class="box-img">
-                    <img src="{{ asset("uploads/Cover/#{book.image.src}") }}" alt="{{ book.image.text }}">
-                </div>
+        <a class="col-sm-6 col-md-4 col-lg-3 col-xl-2 p-1" href="{{ path('book_show', {'id': book.id}) }}" title="Cliquer pour + de détails">
+            <div class="box-book">
                 <div class="box-body">
-                    <div class="box-content">{{ book.title }}</div>
+                    <div class="box-img">
+                        <img src="{{ asset("uploads/Cover/#{book.image.src}") }}" alt="{{ book.image.text }}">
+                    </div>
+                    <div class="box-title center">
+                        {{ book.title }}
+                    </div>
                 </div>
-                </div>
+            </div>
         </a>
         {% else %}
                 <div class="alert alert-info">no records found</div>

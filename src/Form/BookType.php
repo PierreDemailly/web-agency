@@ -8,6 +8,7 @@ use App\Form\ClientType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BookType extends AbstractType
 {
@@ -17,7 +18,7 @@ class BookType extends AbstractType
             ->add('title')
             ->add('author')
             ->add('date')
-            ->add('resume')
+            ->add('resume', TextareaType::class)
             ->add('category')
             ->add('image', ImageType::class, array('required' => false))
         ;

@@ -23,6 +23,10 @@
             </ul>
         </div>
 
+        {% if form_errors(registrationForm) %}
+            <div class="alert alert-danger">{{ form_errors(registrationForm) }}</div>
+        {% endif %}
+
         <div class="form-body">
 
             <div class="form-group">
@@ -34,6 +38,8 @@
                 <label class="label" for="registration_form_plainPassword">Mot de passe</label>
                 <input type="password" class="input" id="registration_form_plainPassword" name="registration_form[plainPassword]" required>
             </div>
+
+            {{ form_row(registrationForm._token) }}
 
             <button class="button button-secondary mt-2">Inscription</button>
 

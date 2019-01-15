@@ -1,0 +1,59 @@
+{# <nav>
+  <div class="nav-fostrap">
+    <ul>
+      <li><a href="{{ path('book_index') }}">Accueil</a></li>
+      <li><a href="javascript:void(0)">Livres<span class="arrow-down"></span></a>
+        <ul class="dropdown">
+          <li><a href="{{ path('book_index') }}">Liste</a></li>
+          <li><a href="{{ path('book_new') }}">Créer</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)" >Clients<span class="arrow-down"></span></a>
+        <ul class="dropdown">
+          <li><a href="{{ path('client_index') }}">Liste</a></li>
+          <li><a href="{{ path('client_new') }}">Créer</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+    </ul>
+  </div>
+  <div class="nav-bg-fostrap">
+    <div class="navbar-fostrap"> <span></span> <span></span> <span></span> </div>
+    <p class="title-mobile">Menu de navigation</p>
+  </div>
+</nav> #}
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Ma Bibliothèque</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p class="py-0">pierre.dmll@gmail.com</p>
+            <div class=" py-0 pl-2">
+                <a href="{{ path('logout') }}" class="button button-danger">Se déconnecter</a>
+                </div>
+            <li class="mt-3">
+                <span class="list-head d-inline-block mb-0 ml-2">Livres</span>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ path('book_index') }}">Voir les livres</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('book_new') }}">Ajouter un livre</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="list-head d-inline-block mt-3 mb-0 ml-2">Clients</span>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ path('client_index') }}">Voir les clients</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('client_new') }}">Ajouter un client</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
