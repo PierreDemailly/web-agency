@@ -29,6 +29,9 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
+        $token = bin2hex(random_bytes(4));
+        $client->setIdentifiant($token);
+        
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
@@ -52,6 +55,7 @@ class ClientController extends AbstractController
     public function show(Client $client, ClientRepository $clientRepository): Response
     {
         $books = $clientRepository->getBookTitlesFromUser($client->getId());
+
         return $this->render('client/show.html.twig', ['client' => $client, 'books' => $books]);
     }
 

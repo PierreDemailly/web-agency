@@ -3,11 +3,51 @@
 {% block title %}Edit Book{% endblock %}
 
 {% block body %}
-    <h1>Edit Book</h1>
+<div id="content">
 
-    {{ include('book/_form.html.twig', {'button_label': 'Update'}) }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid p-0">
+            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-justify"></i>
+            </button>
 
-    <a href="{{ path('book_index') }}">back to list</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    {{ include('book/_delete_form.html.twig') }}
+                   
+                <div class="breadcrumb">
+                    <a href="{{ path('book_index') }}">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Livres</span>
+                            <span class="breadcrumb__desc">Accueil</span>
+                        </span>
+                    </a>
+                    <a href="{{ path('book_show', { 'id': book.id }) }}">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Livres</span>
+                            <span class="breadcrumb__desc">{{ book.title }}</span>
+                        </span>
+                    </a>
+                    <a class="active" href="{{ path('book_edit', {'id': book.id }) }}">
+                        <span class="breadcrumb__inner">
+                            <span class="breadcrumb__title">Livres</span>
+                            <span class="breadcrumb__desc">Modifier un livre</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+
+
+    {{ include('book/_form.html.twig', {'button_label': 'Sauvegarder', 'edit_form': true, 'form_title': 'Modifier un livre'}) }}
+
+    </div>
+</div>
 {% endblock %}

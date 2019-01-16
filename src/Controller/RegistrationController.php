@@ -29,6 +29,7 @@ class RegistrationController extends AbstractController
             /** @var User */
             $user = $form->getData();
 
+
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -50,7 +51,7 @@ class RegistrationController extends AbstractController
                 'main' // firewall name in security.yaml
             );
         }
-
+        
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);

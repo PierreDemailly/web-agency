@@ -45,27 +45,30 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('book')['image']['src'];
 
-            $name = $file->getClientOriginalName('src');
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-            
-            $alt = $book->getImage()->getText();
-            
-            $image->setSrc($fileName);
-            $image->setText($alt);
+            if($file)
+            {
+                $name = $file->getClientOriginalName('src');
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+                
+                $alt = $book->getImage()->getText();
+                
+                $image->setSrc($fileName);
+                $image->setText($alt);
 
-            $book->setImage($image);
+                $book->setImage($image);
 
-            try {
-                $file->move(
-                    $this->getParameter('Cover_directory'),
-                    $fileName
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                try {
+                    $file->move(
+                        $this->getParameter('Cover_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
             }
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($image);
+            // $entityManager->persist($image);
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -93,7 +96,7 @@ class BookController extends AbstractController
     {
         $form = $this->createForm(BookType::class, $book);
 
-        $image_source = $bookRepository->find($book->getId())->getImage()->getSrc();
+        $image_source = $book->getImage()->getSrc();
         
         $form->handleRequest($request);
        
@@ -122,10 +125,7 @@ class BookController extends AbstractController
                 }
 
                 try {
-                    $file->move(
-                        $this->getParameter('Cover_directory'),
-                        $fileName
-                    );
+                    $file->move($this->getParameter('Cover_directory'), $fileName);
                 } catch(FileException $e) { 
                     // die($e); 
                 }
@@ -133,7 +133,7 @@ class BookController extends AbstractController
             else {
                 $image = $book->getImage();
                 $image->setSrc($image_source);
-                $image->setText($book->getImage()->getText());
+                $image->setText($image->getText());
                 $book->setImage($image);
             }
 
@@ -141,11 +141,6 @@ class BookController extends AbstractController
             {
                 $client = $clientRepository->find($request->request->get('client'));
                 $book->setClient($client);
-            }
-
-            if($request->request->get('restit') === 'restit')
-            {
-                $book->setClient(null);
             }
 
             $this->getDoctrine()->getManager()->persist($image);
@@ -177,7 +172,19 @@ class BookController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
 
-        /**
+    /**
+     * @Route("/{id}/return", name="book_return", methods={"POST"})
+     */
+    public function return(Request $request, Book $book): Response 
+    {
+        $book->setClient(null);
+        $this->getDoctrine()->getManager()->persist($book);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('book_show', array('id' => $book->getId()));
+    }
+
+    /**
      * @return string
      */
     private function generateUniqueFileName()

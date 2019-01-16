@@ -3,12 +3,55 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="d-flex mvh-100">
+    
+    <form name="registration_form" class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-3 m-auto form form-primary" method="post">
+     
+        <div class="form-heading">
+            Créer mon compte
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+        <div class="form-info">
+            Bienvenue sur votre application de gestion. <br>
+            Créez votre compte pour accéder à <strong>l'interface de gestion</strong>, vous pourrez: <br>
+            <ul>
+            <li class="mt-1">Voir tous les livres enregistrés</li>
+            <li>En ajouter, les supprimer et les modifier</li>
+            <li class="mt-1">Voir tous les utilisateurs inscrits</li>
+            <li>En ajouter, les supprimer et les modifier</li>
+            <li class="mt-1">Gérer les emprunts de livres par les utilisateurs</li>
+            </ul>
+        </div>
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {% if form_errors(registrationForm) %}
+            <div class="alert alert-danger">{{ form_errors(registrationForm) }}</div>
+        {% endif %}
+
+        <div class="form-body">
+
+            <div class="form-group">
+                <label class="label" for="registration_form_firstname">Prénom</label>
+                <input class="input" id="registration_form_firstname" name="registration_form[firstname]" placeholder="Prénom" required maxlength="255">
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="registration_form_email">Email</label>
+                <input class="input" id="registration_form_email" name="registration_form[email]" placeholder="Email" required maxlength="255">
+            </div>
+
+            <div class="form-group">
+                <label class="label" for="registration_form_plainPassword">Mot de passe</label>
+                <input type="password" class="input" id="registration_form_plainPassword" name="registration_form[plainPassword]" required>
+            </div>
+
+            {{ form_row(registrationForm._token) }}
+
+            <button class="button button-secondary mt-2">Inscription</button>
+
+            <a class="d-block mt-1" href="{{ path('app_login') }}">J'ai déjà un compte</a>
+
+        </div>
+    </form>
+
+</div>
 {% endblock %}
