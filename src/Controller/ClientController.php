@@ -29,6 +29,9 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
+        $token = bin2hex(random_bytes(4));
+        $client->setIdentifiant($token);
+        
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
