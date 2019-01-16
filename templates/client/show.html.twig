@@ -3,6 +3,7 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
+
 <div id="content">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,50 +39,56 @@
     </nav>
 
    <div class="container">
-        
-        
 
         <h1 class="c-info">{{ client.firstname | upper }} {{ client.lastname | upper }}</h1>
 
-                <div class="book-detail col-12 col-sm-10 col-lg-8 col-xl-6">
+        <div class="book-detail col-12 col-sm-10 col-lg-8 col-xl-6">
 
-        <table class="book-table">
-            <tbody>
-                <tr>
-                    <th>#
-                    <td>{{ client.id }}</td>
-                </tr>
-                <tr>
-                    <th>Prénom
-                    <td>{{ client.firstname }}</td>
-                </tr>
-                <tr>
-                    <th>Nom
-                    <td>{{ client.lastname }}</td>
-                </tr>
+            <table class="book-table">
+                <tbody>
+                    <tr>
+                        <th>Identifiant
+                        <td>{{ client.identifiant }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom
+                        <td>{{ client.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom
+                        <td>{{ client.lastname }}</td>
+                    </tr>
 
-                <tr>
-                    <th class="py-3 clickable-row" data-href="{{ path('client_edit', { 'id': client.id }) }}"><button class="button button-secondary">Modifier</button></th>
-                </tr>
-                
-            </tbody>
+                    <tr>
+                        <th>Emprunts
+                        <td>{{ client.books | length }}</td>
+                    </tr>
 
-        </table>
-        <div class="user-undertable">
-            <div class="title">Livres empruntés</div>
-            <ul>
-             {% for book in books %}
-                        <li><a href="{{ path('book_show', {'id': book.id}) }}">{{ book.title }}</a>
-                    {% else %}
-                        <li>Ce client n'a aucun emprunt en cours.</li>
-            {% endfor %}
-            </ul>
+                    <tr>
+                        <th class="py-3 clickable-row" data-href="{{ path('client_edit', { 'id': client.id }) }}"><button class="button button-secondary">Modifier</button></th>
+                    </tr>
+                    
+                </tbody>
 
+            </table>
+
+            <div class="user-undertable">
+                <div class="title">Livres empruntés</div>
+                <ul>
+                {% for book in books %}
+                            <li><a href="{{ path('book_show', {'id': book.id}) }}">{{ book.title }}</a>
+                        {% else %}
+                            <li>Ce client n'a aucun emprunt en cours.</li>
+                {% endfor %}
+                </ul>
+            </div>
 
         </div>
+
     </div>
-</div>
+
 </div>
 
-    {{ include('client/_delete_form.html.twig') }}
+{{ include('client/_delete_form.html.twig') }}
+
 {% endblock %}

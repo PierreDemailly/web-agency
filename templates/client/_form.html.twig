@@ -15,8 +15,9 @@
                 {{ form_widget(form.lastname, { 'attr': {'class': 'input', 'placeholder': 'Nom'} }) }}
             </div>
 
-        <button class="button button-primary">{{ button_label|default('Save') }}</button>
+            <button class="button button-primary">{{ button_label|default('Save') }}</button>
 
+        </div>
          {% if edit_form is defined %}
             <button class="button button-danger my-1" form="delete_client">Supprimer</button>
          {% endif %}
@@ -24,8 +25,11 @@
     {{ form_end(form) }}
 
     {% if edit_form is defined %}
-    {{ include('client/_delete_form.html.twig') }}
+    
+        {{ include('client/_delete_form.html.twig') }}
+
     {% endif %}
 
 </div>
-</div></div>
+
+</div>

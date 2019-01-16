@@ -30,43 +30,47 @@
             </div>
         </div>
     </nav>
-<div class="container">
-
+    
+    <div class="container">
  
-    <h1 class="c-info">Clients enregistrés</h1>
+        <h1 class="c-info">Clients enregistrés</h1>
 
-    <a class="button button-secondary" href="{{ path('client_new') }}">Ajouter un client</a>
+        <a class="button button-secondary" href="{{ path('client_new') }}">Ajouter un client</a>
 
-    <div class="row m-3">
-        {% if clients is not empty %}
-            <table class="table table-primary anim">
-                <thead>
-                    <tr>
-                        <th class="pl-3">#</th>
-                        <th>Prénom</th>
-                        <th>Nom</th>
-                        <th class="center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for client in clients %}
-                    <tr>
-                        <td class="pl-3">{{ client.id }} {{ client.books | length }}</td>
-                        <td>{{ client.firstname }}</td>
-                        <td>{{ client.lastname }}</td>
-                        <td class="center">
-                            <a href="{{ path('client_show', {'id': client.id}) }}" class="button button-primary">Voir</a>
-                            <a href="{{ path('client_edit', {'id': client.id}) }}" class="button button-secondary">Modifier</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <div class="alert alert-info">Aucun client trouvé.</div>
-        {% endif %}
-      
+        <div class="row m-3">
+            {% if clients is not empty %}
+                <table class="table table-primary anim">
+                    <thead>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th class="pl-3">Identifiant</th>
+                            <th>Emprunts en cours</th>
+                            <th class="center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.firstname }}</td>
+                            <td>{{ client.lastname }}</td>
+                            <td>{{ client.identifiant }}</td>
+                            <td class="pl-3">{{ client.books | length }}</td>
+                            <td class="center">
+                                <a href="{{ path('client_show', {'id': client.id}) }}" class="button button-primary">Voir</a>
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="button button-secondary">Modifier</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-info">Aucun client trouvé.</div>
+            {% endif %}
+        </div>
+
     </div>
+
 </div>
-</div>
+
 {% endblock %}
