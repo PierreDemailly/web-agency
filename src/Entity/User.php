@@ -36,6 +36,11 @@ class User implements UserInterface, \Serializable
      */
     private $books;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstname;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
@@ -137,5 +142,17 @@ class User implements UserInterface, \Serializable
     public function getUsername()
     {
         return $this->email;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
     }
 }
