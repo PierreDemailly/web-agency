@@ -29,7 +29,7 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p class="py-0">pierre.dmll@gmail.com</p>
+            <p class="py-0">{{ app.user.firstname }} <small>{{ app.user.email }}</small></p>
             <div class=" py-0 pl-2">
                 <a href="{{ path('logout') }}" class="button button-danger">Se déconnecter</a>
                 </div>
