@@ -22,12 +22,11 @@ class ClientRepository extends ServiceEntityRepository
 
     public function getBookTitlesFromUser($client_id)
     {
-        return $this->createQueryBuilder('c')
-                ->select('book.title, book.id')
-                ->from('App\Entity\Book', 'book')
-                ->where('book.client = c')
-                ->getQuery()
-                ->getResult();
+        $conn = $this->getEntityManager()->getConnection();
+        $req = $conn->prepare('SELECT book.title, book.id FROM book WHERE client_id = :id');
+        $req->bindValue('id', $client_id);
+        $req->execute();
+        return $req->fetchAll();
     }
     // /**
     //  * @return Client[] Returns an array of Client objects

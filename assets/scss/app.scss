@@ -10,7 +10,25 @@ $color_ui: #f4f7fb;
 
 body {
   padding:0;margin:0;
+  // margin-left:-50px;
   background:$color_ui;
+
+  .anim {
+    transition: all 1s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transform-origin: bottom left;
+    transform:rotateY(60deg) rotate(-150deg);
+    opacity:0;
+    margin-left:1150px;
+    margin-bottom:320px;
+
+    &.active {
+      margin-left:0;
+          // transform-origin: top right;
+      transform: rotateY(0deg) rotate(0);
+      opacity:1;
+      margin-bottom:0;
+    }
+  }
 }
 
 .mvh-100 {
@@ -240,7 +258,7 @@ a {
   
   }
 }
-
+textarea, select, input, button { &:focus {outline: none;box-shadow:none; } }
 a {
   cursor:pointer;
 }
@@ -445,4 +463,17 @@ a:hover .breadcrumb__title {
 			right: $base / 2 * -1;
 			transform: scale(0.707) rotate(45deg);
 		}
+}
+
+
+@media all and (max-width: 768px) {
+  .spe {
+    display:flex;
+    justify-content: space-between;
+    margin:0 !important;
+    margin-top:10px !important;
+  }
+  .container {
+  padding:5px;
+  }
 }

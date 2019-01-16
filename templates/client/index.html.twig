@@ -39,7 +39,7 @@
 
     <div class="row m-3">
 
-        <table class="table table-primary">
+        <table class="table table-primary anim">
         <thead>
             <tr>
                 <th class="pl-3">#</th>
@@ -51,7 +51,7 @@
         <tbody>
         {% for client in clients %}
             <tr>
-                <td class="pl-3">{{ client.id }}</td>
+                <td class="pl-3">{{ client.id }} {{ client.books | length }}</td>
                 <td>{{ client.firstname }}</td>
                 <td>{{ client.lastname }}</td>
                 <td class="center">

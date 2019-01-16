@@ -12,3 +12,15 @@ jQuery(document).ready(function($) {
         $(this).toggleClass('active');
     });
 });
+// $(window).bind('beforeunload', function(){
+//     $('.body').addClass('slide-out-fwd-center');
+// });
+// $('.body').addClass('slide-in-fwd-center');
+
+$('.anim').addClass('active');
+
+
+// $('.body').addClass('active');
+// setTimeout(function() {
+//     $('.body').removeClass('active')
+// }, 900);

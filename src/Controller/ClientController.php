@@ -52,6 +52,7 @@ class ClientController extends AbstractController
     public function show(Client $client, ClientRepository $clientRepository): Response
     {
         $books = $clientRepository->getBookTitlesFromUser($client->getId());
+
         return $this->render('client/show.html.twig', ['client' => $client, 'books' => $books]);
     }
 
