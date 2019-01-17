@@ -19,6 +19,14 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
+    public function getBookTitlesFromUser($client_id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $req = $conn->prepare('SELECT book.title, book.id FROM book WHERE client_id = :id');
+        $req->bindValue('id', $client_id);
+        $req->execute();
+        return $req->fetchAll();
+    }
     // /**
     //  * @return Client[] Returns an array of Client objects
     //  */

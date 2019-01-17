@@ -1,0 +1,165 @@
+/* ============================= */
+/*            HTML5BP            */
+/* ============================= */
+
+/*! HTML5 Boilerplate v6.1.0 | MIT License | https://html5boilerplate.com/ */html{color:#222;font-size:1em;line-height:1.4}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}audio,canvas,iframe,img,svg,video{vertical-align:middle}fieldset{border:0;margin:0;padding:0}textarea{resize:vertical}.browserupgrade{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}.hidden{display:none!important}.visuallyhidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap}.visuallyhidden.focusable:active,.visuallyhidden.focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto;white-space:inherit}.invisible{visibility:hidden}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}@media print{*,*:before,*:after{background:transparent!important;color:#000!important;-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}a[href^="#"]:after,a[href^="javascript:"]:after{content:""}pre{white-space:pre-wrap!important}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}p,h2,h3{orphans:3;widows:3}h2,h3{page-break-after:avoid}}
+
+/* ============================= */
+/*           MAIN CSS            */
+/* ============================= */
+
+body {
+  background: #2c2c54;
+}
+
+button {
+  cursor:pointer;
+}
+
+.mvh-100 {
+  min-height:calc(100vh - 20px);
+  margin:10px 0;
+}
+
+.primary-form {
+  background:#ffffff;
+  color:#2c2c54;
+  padding:0;
+  border-radius:2px;
+  box-shadow:inset 0 0 2px 0 #2c2c54;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+.form-body {
+  padding:10px;
+}
+.form-heading {
+  text-align:center;
+  font-size:28px;
+  padding:20px;
+  color:#227093;
+}
+.form-info {
+  padding:10px;
+  padding-bottom:1px;
+  color:#227093;
+  color:#fff;
+  background: #227093;
+  font-family:'Noto Sans', Verdana, Geneva, Tahoma, sans-serif;
+  font-size:14px;
+}
+.form-info strong {
+  color:#f9ca24;
+}
+.primary-input {
+  width:100%;
+  border:0;
+  border-bottom: 1px solid #cbcbcb;
+  background:inherit;
+  color:#2c2c2c;
+  font-family:monospace;
+}
+.primary-label {
+  font-weight:bold;
+  margin-bottom:0;
+}
+.primary-label:hover {
+  text-decoration:underline;
+}
+
+.primary-button {
+  padding:6px 20px;
+  border-radius:20px;
+  color:#fff;
+  background: #227093;
+  border:0;
+}
+.add-button {
+  padding:6px 20px;
+  border-radius:20px;
+  color:#fff;
+  background:#125a12;
+  border:0;
+}
+.primary-h1 {
+  color:#fdcb6e;
+}
+
+.box {
+  background:#fff;
+  border:2px solid #bcbcbc;
+  border-top:0;
+  border-radius: 3px;
+  cursor:pointer;
+}
+.box-img {
+  margin:auto;
+  max-width:200px;
+} 
+.box-img img {
+  width:100%;
+}
+.box-content {
+  padding:5px;
+  color:#14329F;
+}
+
+.navbar-blue {
+  background: #260339;
+  color: #bcbcbc;
+}
+.navbar-blue .navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+/* ============================= */
+/*         TABLET STYLES         */
+/* ============================= */
+
+/* ============================= */
+/*        DESKTOP STYLES         */
+/* ============================= */
+@media screen and (min-width:1024px)
+{
+  .primary-input:focus {
+    border-bottom:3px solid #cbcbcb;
+  }
+}
+/* ============================= */
+/*             FONTS             */
+/* ============================= */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+
+/** ANIMATIONS */
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

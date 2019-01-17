@@ -45,6 +45,7 @@ class BookController extends AbstractController
             $file = $request->files->get('book')['image']['src'];
             dump($file);
 
+<<<<<<< HEAD
             $name = $file->getClientOriginalName('src');
             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
             dump($fileName);
@@ -65,10 +66,32 @@ class BookController extends AbstractController
                 );
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
+=======
+            if($file)
+            {
+                $name = $file->getClientOriginalName('src');
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+                
+                $alt = $book->getImage()->getText();
+                
+                $image->setSrc($fileName);
+                $image->setText($alt);
+
+                $book->setImage($image);
+
+                try {
+                    $file->move(
+                        $this->getParameter('Cover_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+>>>>>>> dev
             }
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($image);
+            // $entityManager->persist($image);
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -95,9 +118,56 @@ class BookController extends AbstractController
     public function edit(Request $request, Book $book): Response
     {
         $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
 
+        $image_source = $book->getImage()->getSrc();
+        
+        $form->handleRequest($request);
+       
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = new Image();
+
+            if($request->files->get('book')['image']['src'] !== null && $request->files->get('book')['image']['src'] !== 'no_change')
+            {
+                $file = $request->files->get('book')['image']['src'];
+                $name = $file->getClientOriginalName('src');
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+                $alt = $book->getImage()->getText();
+                
+                $image->setSrc($fileName);
+                $image->setText($alt);
+
+                $book->setImage($image);
+
+
+                $fileSystem = new Filesystem();
+
+                try {
+                    $fileSystem->remove(array('symlink', $this->getParameter('Cover_directory'), $image_source));
+                } catch (IOExceptionInterface $exception) {
+                    echo "An error occurred while creating your directory at ".$exception->getPath();
+                }
+
+                try {
+                    $file->move($this->getParameter('Cover_directory'), $fileName);
+                } catch(FileException $e) { 
+                    // die($e); 
+                }
+            }
+            else {
+                $image = $book->getImage();
+                $image->setSrc($image_source);
+                $image->setText($image->getText());
+                $book->setImage($image);
+            }
+
+            if($request->request->get('client'))
+            {
+                $client = $clientRepository->find($request->request->get('client'));
+                $book->setClient($client);
+            }
+
+            $this->getDoctrine()->getManager()->persist($image);
+            $this->getDoctrine()->getManager()->persist($book);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('book_index', ['id' => $book->getId()]);
@@ -123,7 +193,19 @@ class BookController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
 
-        /**
+    /**
+     * @Route("/{id}/return", name="book_return", methods={"POST"})
+     */
+    public function return(Request $request, Book $book): Response 
+    {
+        $book->setClient(null);
+        $this->getDoctrine()->getManager()->persist($book);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('book_show', array('id' => $book->getId()));
+    }
+
+    /**
      * @return string
      */
     private function generateUniqueFileName()

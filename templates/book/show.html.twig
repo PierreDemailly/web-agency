@@ -1,38 +1,98 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book{% endblock %}
+{% block title %}Livre détails: {{ book.title }}{% endblock %}
 
 {% block body %}
-    <h1>Book</h1>
+    
+    <div id="content">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ book.author }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ book.date ? book.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Resume</th>
-                <td>{{ book.resume }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid p-0">
 
-    <a href="{{ path('book_index') }}">back to list</a>
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
 
-    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    {{ include('book/_delete_form.html.twig') }}
+                    <div class="breadcrumb my-1">
+                        <a href="{{ path('book_index') }}">
+                            <span class="breadcrumb__inner">
+                                <span class="breadcrumb__title">Livres</span>
+                                <span class="breadcrumb__desc">Accueil</span>
+                            </span>
+                        </a>
+                        <a class="active" href="{{ path('book_show', {'id': book.id }) }}">
+                            <span class="breadcrumb__inner">
+                                <span class="breadcrumb__title">Livres</span>
+                                <span class="breadcrumb__desc">#{{ book.id }} {{ book.title }}</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+            <h1 class="c-info">{{ book.title }}</h1>
+
+            <div class="book-detail col-12 col-sm-10 col-lg-8 col-xl-6">
+
+                <table class="book-table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>#{{ book.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Titre</th>
+                            <td>{{ book.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Auteur</th>
+                            <td>{{ book.author }}</td>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <td>{{ book.date ? book.date|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Resumé</th>
+                            <td>{{ book.resume }}</td>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <th><img src="{{ asset("uploads/Cover/#{book.image.src}") }}" alt="{{ book.image.text }}" width="50"></th>
+                        </tr>
+                        {% if book.client is same as(null) %}
+                        <tr>
+                            <th>Emprunté</th>
+                            <th>-</th>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <th>Emprunté</th>
+                            <th><a href="{{ path('client_show', {'id': book.client.id }) }}">{{ book.client.firstname }}</a></th>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+
+                <a class="button button-secondary mt-3" href="{{ path('book_edit', {'id': book.id}) }}">Modifier</a>
+                {{ include('book/_delete_form.html.twig') }}
+                <a class="d-block mt-3" href="{{ path('book_index') }}">Retour à la liste des livres</a>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+
 {% endblock %}

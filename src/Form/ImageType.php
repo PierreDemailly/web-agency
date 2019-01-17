@@ -13,9 +13,8 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('src', FileType::class)
-            ->add('text')
-        ;
+            ->add('src', FileType::class, array('label' => 'Choisir une image', 'data_class' => null, 'empty_data' => 'default.svg'))
+            ->add('text', null, array('label' => 'Description image', 'attr' => ['required' => true]));
     }
 
     public function configureOptions(OptionsResolver $resolver)
