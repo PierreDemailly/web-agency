@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 /**
  * @Route("/book")
@@ -92,7 +95,7 @@ class BookController extends AbstractController
     /**
      * @Route("/{id}/edit", name="book_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Book $book): Response
+    public function edit(Request $request, Book $book, BookRepository $bookRepository): Response
     {
         $form = $this->createForm(BookType::class, $book);
 

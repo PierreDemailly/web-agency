@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="d-flex mt-3 mb-3">
 {% form_theme form 'form/form_errors.html.twig' %}
     {{ form_start(form, { 'attr': {'id': 'form-bk', 'class': 'col-11 col-sm-10 col-md-8 m-auto form form-primary'} }) }}
@@ -84,3 +85,9 @@
     {% if edit_form is defined %}
         {{ include('book/_delete_form.html.twig') }}
     {% endif %}
+=======
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+>>>>>>> parent of 5d9b8a8... Merge pull request #5 from PierreDemailly/dev

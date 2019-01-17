@@ -19,6 +19,7 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
+<<<<<<< HEAD
     public function getBookTitlesFromUser($client_id)
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -27,6 +28,8 @@ class ClientRepository extends ServiceEntityRepository
         $req->execute();
         return $req->fetchAll();
     }
+=======
+>>>>>>> parent of 5d9b8a8... Merge pull request #5 from PierreDemailly/dev
     // /**
     //  * @return Client[] Returns an array of Client objects
     //  */
