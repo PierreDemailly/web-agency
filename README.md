@@ -1,41 +1,37 @@
 # Web Agency
 
-Web Agency is a library app to manage book and client.
-This project has been developped with Symfony 4.2.x / PHP 7.2.x and Composer 1.8.0.
+Web Agency is a book and user management application to facilitate the
+work of a librarian.
 
-## Getting Started
+- see all books saved, add, delete and edit them
+- see all registered users, add them, delete or modify them
+- and record borrowing of books by users.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+# Requirements
 
-1. Fork it!
-2. Go to your project repository
-3. Import SQL into DataBase
-4. Run composer i
-5. Run those commands : 
-  * **"composer require symfony/web-server-bundle --dev"** (Install the bundle from symfony)
-  / Configure connection information into **".env"** file
-  * **"php bin/console server:run"** (Run your server and allow you to access the application in your browser at             http://localhost:8000)
-6. Commit your changes: git commit -am 'added some feature'
-7. Push to the branch: git push origin my-new-feature
-8. Submit a pull request :)
+    - PHP 7.1 or higher
+    - Composer 1.8 or higher
 
-### Prerequisites
+# Get started
 
-- NodeJs;
-- Composer 1.8.x;
-- PHP 7.2.x;
-- Symfony 4.2.x
+  - Download|Clone the repo
+  - Install dependencies with __composer i__ _(composer install)_
+  - Edit ./.env file with your MySQL logs
+  - [Install database](https://github.com/PierreDemailly/web-agency/#install-database)
+  - Run __php bin/console server:run__
 
-## Contributing
+# Install database
+  
+You have 2 options:
+#### 1. With terminal
+    - php bin/console doctrine:database:create
+    - php bin/console doctrine:schema:create
+    - Create some categories because Books cannot be created without category
 
-No specific details on our code of conduct, and process for submitting pull requests to us.
+### 2. With SQL
+    - Create a database with the same name that in .env file
+    - Import ./sql/web-agency.sql
 
-## Authors
+### Tech
 
-* **Pierre Demailly**
-
-## License
-
-No license available.
-
-## Acknowledgments
+The app is powered by [Symfony 4.2](https://symfony.com/)
