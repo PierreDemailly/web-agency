@@ -45,28 +45,6 @@ class BookController extends AbstractController
             $file = $request->files->get('book')['image']['src'];
             dump($file);
 
-<<<<<<< HEAD
-            $name = $file->getClientOriginalName('src');
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-            dump($fileName);
-            
-            $alt = $book->getImage()->getText();
-            
-            $image->setSrc($fileName);
-            $image->setText($alt);
-
-            $book->setImage($image);
-            dump($image);
-            dump($book);
-
-            try {
-                $file->move(
-                    $this->getParameter('Cover_directory'),
-                    $fileName
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-=======
             if($file)
             {
                 $name = $file->getClientOriginalName('src');
@@ -87,7 +65,6 @@ class BookController extends AbstractController
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
->>>>>>> dev
             }
 
             $entityManager = $this->getDoctrine()->getManager();
