@@ -44,8 +44,8 @@
                         <tr>
                             <th>Prénom</th>
                             <th>Nom</th>
-                            <th class="pl-3">Identifiant</th>
-                            <th>Emprunts en cours</th>
+                            <th class="d-none d-xl-inline-block">Identifiant</th>
+                            <th class="d-none d-md-inline-block">Emprunts en cours</th>
                             <th class="center">Actions</th>
                         </tr>
                     </thead>
@@ -54,8 +54,8 @@
                         <tr>
                             <td>{{ client.firstname }}</td>
                             <td>{{ client.lastname }}</td>
-                            <td>{{ client.identifiant }}</td>
-                            <td class="pl-3">{{ client.books | length }}</td>
+                            <td class="d-none d-xl-inline-block">{{ client.identifiant }}</td>
+                            <td class="pl-3 d-none d-md-inline-block">{{ client.books | length }}</td>
                             <td class="center">
                                 <a href="{{ path('client_show', {'id': client.id}) }}" class="button button-primary">Voir</a>
                                 <a href="{{ path('client_edit', {'id': client.id}) }}" class="button button-secondary">Modifier</a>

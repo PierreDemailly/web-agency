@@ -9,12 +9,12 @@
         <div class="form-body">
 
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     {{ form_errors(form.title) }}
                     {{ form_label(form.title, 'Titre', { 'label_attr': {'class': 'label'}, 'attr' : {'required':'false'} }) }}
                     {{ form_widget(form.title, { 'attr': {'class': 'input', 'placeholder': 'Titre'} }) }}
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     {{ form_errors(form.author) }}
                     {{ form_label(form.author, 'Auteur', { 'label_attr': {'class': 'label'} }) }}
                     {{ form_widget(form.author, { 'attr': {'class': 'input', 'placeholder': 'Auteur'} }) }}
@@ -22,12 +22,12 @@
             </div>
 
             <div class="row mt-3">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     {{ form_errors(form.date) }}
                     {{ form_label(form.date, 'Date de publication', { 'label_attr': {'class': 'label'} }) }}
                     {{ form_widget(form.date, { 'attr': {'class': 'input'} }) }}
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     {{ form_errors(form.category) }}
                     {{ form_label(form.category, 'Catégorie', { 'label_attr': {'class': 'label'} }) }}
                     {{ form_widget(form.category, { 'attr': {'class': 'select'} }) }}
@@ -35,7 +35,7 @@
             </div>
 
             <div class="row mt-3">
-                <div class="col-12">
+                <div class="col-12 col-md-6">
                     {{ form_errors(form.resume) }}
                     {{ form_label(form.resume, 'Résumé', { 'label_attr': {'class': 'label'} }) }}
                     {{ form_widget(form.resume, { 'attr': {'class': 'input', 'placeholder': 'Résumé'} }) }}
@@ -43,18 +43,16 @@
             </div>
 
             <div class="row mt-3">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                 {{ form_errors(form.image) }}
                     {% if book.image %}
                         <img id="img_book" width="50" style="float:right" src="{{ asset("uploads/Cover/#{book.image.src}") }}" alt="{{ book.image.text }}">
                     {% endif %}
                     {{ form_widget(form.image, { 'attr': {'class': 'input-file', 'onchange': 'loadFile(event)'}}) }}
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     {% if book.client is null %}
-                        {% if clients is not defined %}
-                            <p class="mt-3">Aucun client trouvé.</p>
-                        {% else %}
+                        {% if clients is defined %}
                             <label for="client">Emprunter le livre</label>
                             <select class="input" name="client" id="client">
                                 {% for client in clients %}
